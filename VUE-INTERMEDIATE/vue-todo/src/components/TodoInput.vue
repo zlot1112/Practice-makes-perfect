@@ -1,31 +1,44 @@
 <template>
   <div class="inputBox shadow">
-    <input v-model="newTodoItem" type="text" v-on:keyup.enter="addTodo">
+    <input v-model="newTodoItem" type="text" @keyup.enter="addTodo">
     <span class="addContainer" @click="addTodo">
       <em class="fas fa-plus addBtn"></em>
     </span>
+    <Modal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">경고
+        <em class="closeModalBtn fas fa-times" @click="showModal = false"></em>
+      </h3>
+      <div slot="body">아무것도 입력하지 않으셨습니다.</div>
+    </Modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/Modal.vue'
+
 export default {
   name: "TodoInput",
-  data: function () {
+  data() {
     return {
-      newTodoItem: ""
+      newTodoItem: "",
+      showModal: false
     }
   },
   methods: {
-    addTodo: function () {
+    addTodo() {
       if (this.newTodoItem !== '') {
-        let obj = {completed: false, item: this.newTodoItem};
-        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
       }
     },
-    clearInput: function () {
+    clearInput() {
       this.newTodoItem = '';
     }
+  },
+  components: {
+    Modal
   }
 }
 
@@ -59,5 +72,10 @@ input:focus {
 .addBtn {
   color: white;
   vertical-align: middle;
+}
+
+.closeModalBtn {
+  color: #42b983;
+
 }
 </style>
