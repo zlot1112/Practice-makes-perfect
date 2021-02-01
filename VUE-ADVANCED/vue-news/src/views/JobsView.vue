@@ -5,17 +5,22 @@
 </template>
 
 <script>
-import {fetchJobsList} from "@/api";
+import {useStore} from "vuex";
+import {computed} from "vue";
 
 export default {
   name: "JobsView",
-  data() {
+  setup() {
+    const store = useStore();
+    store.dispatch('jobs/FETCH_JOBS')
+
+    const jobs = computed(() => {
+      return store.getters['jobs/fetchAsk'];
+    });
+
     return {
-      jobs: []
+      jobs
     }
-  },
-  created() {
-    fetchJobsList().then(res => this.jobs = res.data).catch();
   }
 }
 </script>
