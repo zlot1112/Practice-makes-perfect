@@ -1,17 +1,19 @@
 <template>
-  <div v-for="info in ask" :key="info.id">
-    <a :href="info.url">
-      {{ info.title }}
-    </a>
+  <div>
+    <list-item :data="ask"></list-item>
   </div>
 </template>
 
 <script>
 import {useStore} from "vuex";
 import {computed} from "vue";
+import ListItem from "@/components/ListItem";
 
 export default {
   name: "AskView",
+  components: {
+    ListItem
+  },
   setup() {
     const store = useStore();
     store.dispatch('ask/FETCH_ASKS')
@@ -28,5 +30,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

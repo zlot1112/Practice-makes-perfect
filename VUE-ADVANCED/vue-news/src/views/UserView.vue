@@ -1,5 +1,10 @@
 <template>
-  <div>{{ user }}</div>
+  <div>
+    <user-profile :user="user">
+      <div slots="username">{{ user.id }}</div>
+      <div slots="time">{{ user.created }}</div>
+    </user-profile>
+  </div>
 </template>
 
 <script>
@@ -7,10 +12,12 @@
 
 import {useStore} from "vuex";
 import {computed} from "vue";
+import UserProfile from "@/components/UserProfile";
 
 export default {
   props: ["name"],
   name: "UserView",
+  components: {UserProfile},
   setup(props) {
     const store = useStore();
     store.dispatch('user/FETCH_USER', props.name)

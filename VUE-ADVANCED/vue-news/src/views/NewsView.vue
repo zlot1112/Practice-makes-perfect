@@ -1,23 +1,18 @@
 <template>
   <div>
-    <div v-for="info in news" :key="info.id">
-      <a :href="info.url">
-        {{ info.title }}
-      </a>
-      <small>
-        <router-link :to="'/user/' + info.user">{{ info.user }}</router-link>
-      </small>
-    </div>
+    <list-item :data="news"></list-item>
   </div>
 </template>
 -
 <script>
-import {computed} from 'vue';
-
-import {useStore} from 'vuex';
+import ListItem from "@/components/ListItem";
+import {useStore} from "vuex";
+import {computed} from "vue";
 
 export default {
-  name: "NewsView",
+  components: {
+    ListItem
+  },
   setup() {
     const store = useStore();
     store.dispatch('news/FETCH_NEWS')
@@ -34,5 +29,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
