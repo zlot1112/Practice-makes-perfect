@@ -1,8 +1,8 @@
 <template>
   <div>
     <user-profile :user="user">
-      <div slots="username">{{ user.id }}</div>
-      <div slots="time">{{ user.created }}</div>
+      <slot name="username"></slot>
+      <slot name="time"></slot>
     </user-profile>
   </div>
 </template>

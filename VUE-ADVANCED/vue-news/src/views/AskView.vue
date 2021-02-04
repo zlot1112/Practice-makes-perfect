@@ -1,31 +1,32 @@
 <template>
   <div>
-    <list-item :data="ask"></list-item>
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
-import {useStore} from "vuex";
-import {computed} from "vue";
 import ListItem from "@/components/ListItem";
+import ListMixin from "@/mixins/ListMixin";
 
 export default {
   name: "AskView",
   components: {
     ListItem
   },
-  setup() {
-    const store = useStore();
-    store.dispatch('ask/FETCH_ASKS')
-
-    const ask =
-        computed(() => {
-          return store.getters['ask/fetchAsk'];
-        });
-    return {
-      ask
-    }
-  }
+  mixins: [ListMixin]
+  //
+  // setup() {
+  //   const store = useStore();
+  //   store.dispatch('ask/FETCH_ASKS')
+  //
+  //   const ask =
+  //       computed(() => {
+  //         return store.getters['ask/fetchAsk'];
+  //       });
+  //   return {
+  //     ask
+  //   }
+  // }
 }
 </script>
 

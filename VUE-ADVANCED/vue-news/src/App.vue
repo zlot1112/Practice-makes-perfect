@@ -11,18 +11,24 @@
 <script>
 import ToolBar from './components/ToolBar'
 import Spinner from './components/Spinner'
+import {eventBus} from './store/bus'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      loadingStatus: true
+    }
+  },
   components: {
     ToolBar,
     Spinner
   },
-  data() {
-    return {
-      loadingStatus: false
-    }
-  }
+  mounted() {
+    eventBus.on('chgLoading', v => {
+      this.loadingStatus = v
+    })
+  },
 }
 </script>
 

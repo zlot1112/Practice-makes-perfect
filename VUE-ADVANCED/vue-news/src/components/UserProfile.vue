@@ -4,9 +4,9 @@
       <em class="fas fa-user"></em>
     </div>
     <div class="user-description">
-      <slot name="username"></slot>
+      <div slots="username">{{ user.id }}</div>
       <div class="time">
-        <slot name="time"></slot>
+        <div slots="time">{{ user.created }}</div>
       </div>
     </div>
   </div>

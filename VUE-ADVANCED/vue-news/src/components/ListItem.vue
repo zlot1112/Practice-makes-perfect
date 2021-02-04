@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="news-list">
-      <li v-for="info in data" :key="info.id" class="post">
+      <li v-for="info in list" :key="info.id" class="post">
         <div class="points">
           {{ info.points }}
         </div>
@@ -20,9 +20,24 @@
 </template>
 
 <script>
+import {useStore} from "vuex";
+import {computed} from "vue";
+
 export default {
   name: "ListItem",
-  props: ['data']
+  setup() {
+    const store = useStore();
+
+    const list =
+        computed(() => {
+          return store.getters['fetchList'];
+        });
+
+    return {
+      list: list
+    }
+  }
+
 }
 
 </script>
