@@ -8,8 +8,8 @@ import ItemView from "@/views/ItemView";
 const routes = [
     {
         path: "/",
-        name: "news",
-        component: NewsView,
+        name: "index",
+        redirect: '/news'
     },
     {
         path: "/news",
