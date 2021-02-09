@@ -8,7 +8,7 @@ import ItemView from "@/views/ItemView";
 const routes = [
     {
         path: "/",
-        name: "index",
+        name: "news",
         redirect: '/news'
     },
     {
