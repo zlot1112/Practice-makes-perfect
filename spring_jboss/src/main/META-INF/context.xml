@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/">
+    <Resource acquireIncrement="10" auth="Container" description="DB Connection" driverClassName="com.mysql.jdbc.Driver"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" maxPoolSize="50" minPoolSize="10" name="jdbc/gk"
+              password="!rpdlxm1#3$" type="javax.sql.DataSource"
+              url="jdbc:mysql://localhost:31521/GKSTG?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
+              username="wsgk" validationQuery="SELECT 1"/>
+    <ResourceLink name="jdbc/gk" global="jdbc/gk" type="javax.sql.DataSource"/>
 </Context>
+
+
